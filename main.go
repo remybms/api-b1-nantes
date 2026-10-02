@@ -16,7 +16,7 @@ import (
 )
 
 func Routes(configuration *config.Config) *chi.Mux {
-	router := chi.NewRouter();
+	router := chi.NewRouter()
 
 	router.Use(cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
@@ -44,9 +44,8 @@ func Routes(configuration *config.Config) *chi.Mux {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Erreur lors du chargement du fichier .env :", err)
+	if err := godotenv.Load(); err != nil {
+		log.Println("Pas de fichier .env, utilisation des variables d'environnement du système")
 	}
 
 	configuration, err := config.New()

@@ -106,9 +106,9 @@ definitions:
       age: { type: integer, example: 10 }
       origin_region: { type: string, example: Kanto }
       origin_city: { type: string, example: Bourg Palette }
-      best_buddy: { type: string, example: Pikachu }
-      team: { type: string, example: "https://" }
+      best_buddy: { type: string, example: https://poke-repertoire.vercel.app/api/pokemons/25 }
+      team: { type: string, example: "https://poke-repertoire.vercel.app/api/teams/1" }
   models.Team:
     type: object
     properties:
-      pokemons: { type: array, items: { type: string }, example: [Pikachu, Dracaufeu, Tortank] }
+      pokemons: { type: array, items: { type: string }, example: ["https://poke-repertoire.vercel.app/api/pokemons/25", "https://poke-repertoire.vercel.app/api/pokemons/9", "https://poke-repertoire.vercel.app/api/pokemons/6"] }

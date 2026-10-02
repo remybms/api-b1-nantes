@@ -1,0 +1,114 @@
+swagger: "2.0"
+info:
+  title: Pokédex API
+  description: API de consultation des Pokémon, dresseurs et équipes
+  version: "1.0"
+host: localhost:8080
+basePath: /api
+paths:
+  /pokemons:
+    get:
+      summary: Lister tous les Pokémon
+      tags: [Pokémon]
+      produces: [application/json]
+      responses:
+        "200":
+          description: OK
+          schema: { type: array, items: { $ref: "#/definitions/models.Pokemon" } }
+        "500":
+          description: Internal Server Error
+          schema: { $ref: "#/definitions/models.ErrorResponse" }
+  /pokemons/{id}:
+    get:
+      summary: Récupérer un Pokémon par son ID
+      tags: [Pokémon]
+      produces: [application/json]
+      parameters:
+        - { name: id, in: path, type: integer, required: true, description: ID du Pokémon }
+      responses:
+        "200":
+          description: OK
+          schema: { type: array, items: { $ref: "#/definitions/models.Pokemon" } }
+        "500":
+          description: Internal Server Error
+          schema: { $ref: "#/definitions/models.ErrorResponse" }
+  /trainers:
+    get:
+      summary: Lister tous les dresseurs
+      tags: [Dresseur]
+      produces: [application/json]
+      responses:
+        "200":
+          description: OK
+          schema: { type: array, items: { $ref: "#/definitions/models.Trainer" } }
+        "500":
+          description: Internal Server Error
+          schema: { $ref: "#/definitions/models.ErrorResponse" }
+  /trainers/{id}:
+    get:
+      summary: Récupérer un dresseur par son ID
+      tags: [Dresseur]
+      produces: [application/json]
+      parameters:
+        - { name: id, in: path, type: integer, required: true, description: ID du dresseur }
+      responses:
+        "200":
+          description: OK
+          schema: { type: array, items: { $ref: "#/definitions/models.Trainer" } }
+        "500":
+          description: Internal Server Error
+          schema: { $ref: "#/definitions/models.ErrorResponse" }
+  /teams:
+    get:
+      summary: Lister toutes les équipes
+      tags: [Équipe]
+      produces: [application/json]
+      responses:
+        "200":
+          description: OK
+          schema: { type: array, items: { $ref: "#/definitions/models.Team" } }
+        "500":
+          description: Internal Server Error
+          schema: { $ref: "#/definitions/models.ErrorResponse" }
+  /teams/{id}:
+    get:
+      summary: Récupérer une équipe par son ID
+      tags: [Équipe]
+      produces: [application/json]
+      parameters:
+        - { name: id, in: path, type: integer, required: true, description: ID de l'équipe }
+      responses:
+        "200":
+          description: OK
+          schema: { type: array, items: { $ref: "#/definitions/models.Team" } }
+        "500":
+          description: Internal Server Error
+          schema: { $ref: "#/definitions/models.ErrorResponse" }
+definitions:
+  models.ErrorResponse:
+    type: object
+    properties:
+      Error: { type: string, example: "Failed to load all the Pokemons !" }
+  models.Pokemon:
+    type: object
+    properties:
+      name: { type: string, example: Pikachu }
+      image: { type: string, example: "https://play.pokemonshowdown.com/sprites/ani/pikachu.gif" }
+      description: { type: string }
+      first_type: { type: string, example: Électrik }
+      second_type: { type: string, example: Null }
+      generation: { type: integer, example: 1 }
+      signature_attack: { type: string, example: Tonnerre }
+  models.Trainer:
+    type: object
+    properties:
+      name: { type: string, example: Sacha }
+      age: { type: integer, example: 10 }
+      origin_region: { type: string, example: Kanto }
+      origin_city: { type: string, example: Bourg Palette }
+      best_buddy: { type: string, example: Pikachu }
+      team: { type: string, example: "https://" }
+  models.Team:
+    type: object
+    properties:
+      pokemons: { type: array, items: { type: string }, example: [Pikachu, Dracaufeu, Tortank] }

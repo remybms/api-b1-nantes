@@ -12,7 +12,7 @@ type Team struct {
 
 type TeamsRepository interface {
 	FindAll()([]*Team, error)
-	FindById(teamId int)([]*Team, error)
+	FindById(teamId string)([]*Team, error)
 }
 
 type teamsRepository struct {
@@ -31,7 +31,7 @@ func (r *teamsRepository) FindAll()([]*Team, error){
 	return Teams, nil
 }
 
-func (r *teamsRepository) FindById(teamId int) ([]*Team, error){
+func (r *teamsRepository) FindById(teamId string) ([]*Team, error){
 	var entry []*Team
 	if err := r.db.Where("id = ?", teamId).Find(&entry).Error; err != nil{
 		return nil, err

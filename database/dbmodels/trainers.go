@@ -15,7 +15,7 @@ type Trainer struct {
 
 type TrainersRepository interface {
 	FindAll()([]*Trainer, error)
-	FindById(pokemonId int)([]*Trainer, error)
+	FindById(trainerId string)([]*Trainer, error)
 }
 
 type trainersRepository struct {
@@ -34,7 +34,7 @@ func (r *trainersRepository) FindAll()([]*Trainer, error){
 	return trainers, nil
 }
 
-func (r *trainersRepository) FindById(trainerId int) ([]*Trainer, error){
+func (r *trainersRepository) FindById(trainerId string) ([]*Trainer, error){
 	var entry []*Trainer
 	if err := r.db.Where("id = ?", trainerId).Find(&entry).Error; err != nil{
 		return nil, err

@@ -15,7 +15,7 @@ type Pokemon struct {
 
 type PokemonsRepository interface {
 	FindAll()([]*Pokemon, error)
-	FindById(pokemonId int)([]*Pokemon, error)
+	FindById(pokemonId string)([]*Pokemon, error)
 }
 
 type pokemonsRepository struct {
@@ -34,7 +34,7 @@ func (r *pokemonsRepository) FindAll()([]*Pokemon, error){
 	return pokemons, nil
 }
 
-func (r *pokemonsRepository) FindById(pokemonId int) ([]*Pokemon, error){
+func (r *pokemonsRepository) FindById(pokemonId string) ([]*Pokemon, error){
 	var entry []*Pokemon
 	if err := r.db.Where("id = ?", pokemonId).Find(&entry).Error; err != nil{
 		return nil, err

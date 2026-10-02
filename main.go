@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"pokedex/config"
 	"pokedex/docs"
 	"pokedex/pkg/pokemon"
@@ -48,6 +49,11 @@ func main() {
 		log.Println("Pas de fichier .env, utilisation des variables d'environnement du système")
 	}
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	configuration, err := config.New()
 	if err != nil {
 		log.Panicln("Configuration error:", err)
@@ -55,5 +61,5 @@ func main() {
 
 	router := Routes(configuration)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":" + port, router))
 }

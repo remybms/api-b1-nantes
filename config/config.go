@@ -2,7 +2,6 @@ package config
 
 import (
 	"os"
-	"pokedex/database"
 	"pokedex/database/dbmodels"
 
 	"github.com/joho/godotenv"
@@ -25,7 +24,6 @@ func New() (*Config, error) {
 		return &config, err
 	}
 
-	database.Migrate(databaseSession)
 	config.PokemonsRepository = dbmodels.NewPokemonRepository(databaseSession)
 	config.TrainersRepository = dbmodels.NewTrainersRepository(databaseSession)
 	config.TeamsRepository = dbmodels.NewTeamsRepository(databaseSession)

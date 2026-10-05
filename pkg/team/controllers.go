@@ -22,6 +22,7 @@ func teamToModel(teams []*dbmodels.Team) []models.Team {
 	teamsToModel := &models.Team{}
 	teamsEdited := []models.Team{}
 	for _, team := range teams{
+		teamsToModel.Id = int(team.ID)
 		teamsToModel.Pokemons = team.Pokemons
 		teamsEdited = append(teamsEdited, *teamsToModel)
 	}

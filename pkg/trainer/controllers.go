@@ -22,6 +22,7 @@ func trainerToModel(trainers []*dbmodels.Trainer) []models.Trainer {
 	trainerToModel := &models.Trainer{}
 	trainersEdited := []models.Trainer{}
 	for _, trainer := range trainers {
+		trainerToModel.Id = int(trainer.ID)
 		trainerToModel.Name = trainer.Name
 		trainerToModel.Age = trainer.Age
 		trainerToModel.OriginRegion = trainer.OriginRegion

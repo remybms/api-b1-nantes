@@ -22,6 +22,7 @@ func pokemonsToModel(pokemons []*dbmodels.Pokemon) []models.Pokemon {
 	pokemonToModel := &models.Pokemon{}
 	pokemonsEdited := []models.Pokemon{}
 	for _, pokemon := range pokemons {
+		pokemonToModel.Id = int(pokemon.ID)
 		pokemonToModel.Name = pokemon.Name
 		pokemonToModel.Image = pokemon.Image
 		pokemonToModel.Description = pokemon.Description

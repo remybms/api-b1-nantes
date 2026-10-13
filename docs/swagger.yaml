@@ -92,6 +92,7 @@ definitions:
   models.Pokemon:
     type: object
     properties:
+      id: {type: int, example: 25}
       name: { type: string, example: Pikachu }
       image: { type: string, example: "https://play.pokemonshowdown.com/sprites/ani/pikachu.gif" }
       description: { type: string }
@@ -102,13 +103,15 @@ definitions:
   models.Trainer:
     type: object
     properties:
-      name: { type: string, example: Sacha }
-      age: { type: integer, example: 10 }
+      id: {type: int, example: 1}
+      name: { type: string, example: Red }
+      age: { type: integer, example: 11 }
       origin_region: { type: string, example: Kanto }
       origin_city: { type: string, example: Bourg Palette }
-      best_buddy: { type: string, example: https://poke-repertoire.vercel.app/api/pokemons/25 }
+      best_buddy: { type: string, example: https://poke-repertoire.vercel.app/api/pokemons/9 }
       team: { type: string, example: "https://poke-repertoire.vercel.app/api/teams/1" }
   models.Team:
     type: object
     properties:
-      pokemons: { type: array, items: { type: string }, example: ["https://poke-repertoire.vercel.app/api/pokemons/25", "https://poke-repertoire.vercel.app/api/pokemons/9", "https://poke-repertoire.vercel.app/api/pokemons/6"] }
+      id: {type: int, example: 1}
+      pokemons: { type: array, items: { type: string }, example: ["https://poke-repertoire.vercel.app/api/pokemons/6","https://poke-repertoire.vercel.app/api/pokemons/3","https://poke-repertoire.vercel.app/api/pokemons/9","https://poke-repertoire.vercel.app/api/pokemons/25","https://poke-repertoire.vercel.app/api/pokemons/143","https://poke-repertoire.vercel.app/api/pokemons/131"] }

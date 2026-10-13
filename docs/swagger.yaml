@@ -3,7 +3,7 @@ info:
   title: Pokédex API
   description: API de consultation des Pokémon, dresseurs et équipes
   version: "1.0"
-host: localhost:8080
+host: https://poke-repertoire.vercel.app
 basePath: /api
 paths:
   /pokemons:

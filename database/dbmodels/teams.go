@@ -25,7 +25,7 @@ func NewTeamsRepository(db *gorm.DB) TeamsRepository{
 
 func (r *teamsRepository) FindAll()([]*Team, error){
 	var Teams []*Team
-	if err := r.db.Find(&Teams).Error; err != nil{
+	if err := r.db.Order("id ASC").Find(&Teams).Error; err != nil{
 		return nil, err
 	}
 	return Teams, nil

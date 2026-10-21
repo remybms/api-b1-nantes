@@ -28,7 +28,7 @@ func NewPokemonRepository(db *gorm.DB) PokemonsRepository{
 
 func (r *pokemonsRepository) FindAll()([]*Pokemon, error){
 	var pokemons []*Pokemon
-	if err := r.db.Find(&pokemons).Error; err != nil{
+	if err := r.db.Order("id ASC").Find(&pokemons).Error; err != nil{
 		return nil, err
 	}
 	return pokemons, nil

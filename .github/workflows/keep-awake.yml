@@ -2,7 +2,7 @@ name: Keep Supabase awake
 
 on:
   schedule:
-    - cron: "0 8 */3 * *"   # tous les 3 jours à 8h UTC
+    - cron: "0 */8 * * *"
   workflow_dispatch:
 
 jobs:
@@ -17,3 +17,11 @@ jobs:
             --retry-delay 30 \
             --retry-all-errors \
             "https://poke-repertoire.vercel.app/api/pokemons"
+            
+      - name: Ping Supabase REST
+        run: |
+          curl --fail --silent --show-error --output /dev/null \
+            --max-time 30 --retry 2 --retry-delay 30 --retry-all-errors \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/keepalive?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
